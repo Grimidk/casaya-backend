@@ -1,3 +1,4 @@
+import { Address } from "src/address/entities/address.entity";
 import { User } from "src/user/entities/user.entity";
 export declare class Property {
     property_id: number;
@@ -7,4 +8,5 @@ export declare class Property {
     name: string;
     floors: number;
     user: User;
+    address: Address;
 }

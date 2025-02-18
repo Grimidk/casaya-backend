@@ -12,12 +12,13 @@ const address_service_1 = require("./address.service");
 const address_controller_1 = require("./address.controller");
 const typeorm_1 = require("@nestjs/typeorm");
 const address_entity_1 = require("./entities/address.entity");
+const user_entity_1 = require("../user/entities/user.entity");
 let AddressModule = class AddressModule {
 };
 exports.AddressModule = AddressModule;
 exports.AddressModule = AddressModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([address_entity_1.Address])],
+        imports: [typeorm_1.TypeOrmModule.forFeature([address_entity_1.Address, user_entity_1.User])],
         controllers: [address_controller_1.AddressController],
         providers: [address_service_1.AddressService],
         exports: [address_service_1.AddressService]

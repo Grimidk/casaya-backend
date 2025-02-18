@@ -11,27 +11,38 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreatePropertyDto = void 0;
 const class_validator_1 = require("class-validator");
+const swagger_1 = require("@nestjs/swagger");
 class CreatePropertyDto {
 }
 exports.CreatePropertyDto = CreatePropertyDto;
 __decorate([
+    (0, swagger_1.ApiProperty)({ description: 'Number of bathrooms in the property', example: 2 }),
     (0, class_validator_1.IsNumber)(),
     __metadata("design:type", Number)
 ], CreatePropertyDto.prototype, "bathrooms", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({ description: 'Number of bedrooms in the property', example: 3 }),
     (0, class_validator_1.IsNumber)(),
     __metadata("design:type", Number)
 ], CreatePropertyDto.prototype, "bedrooms", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({ description: 'Number of parking spots available', example: 1 }),
     (0, class_validator_1.IsNumber)(),
     __metadata("design:type", Number)
 ], CreatePropertyDto.prototype, "parkingSpots", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({ description: 'Name or title of the property', example: 'Casa en Alto prado' }),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], CreatePropertyDto.prototype, "name", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({ description: 'Number of floors in the property', example: 1 }),
     (0, class_validator_1.IsNumber)(),
     __metadata("design:type", Number)
 ], CreatePropertyDto.prototype, "floors", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ description: 'ID of the address for the property', example: 101 }),
+    (0, class_validator_1.IsNumber)(),
+    __metadata("design:type", Number)
+], CreatePropertyDto.prototype, "address_id", void 0);
 //# sourceMappingURL=create-property.dto.js.map

@@ -88,4 +88,27 @@ export class PropertyService {
     const property = await this.findOne(user_id, property_id);
     await this.propertyRepository.remove(property);
   }
+
+    // Filter a specific property
+  async findByLocation(
+    location: string
+  ): Promise<Property[]> {
+    const address = await this.addressRepository.find({ where: { zone: location }});
+    if(!address)
+      throw new HttpException(
+        'Address not found.',
+        HttpStatus.NOT_FOUND,
+      );
+
+    const property = await this.propertyRepository.find({
+      where: {address},
+    }); 
+    if(!property)
+      throw new HttpException(
+        'Property not found.',
+        HttpStatus.NOT_FOUND,
+      );
+
+    return property;
+  }
 }

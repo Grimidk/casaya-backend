@@ -4,4 +4,5 @@ export declare class CreatePropertyDto {
     parkingSpots: number;
     name: string;
     floors: number;
+    address_id: number;
 }

@@ -18,20 +18,26 @@ const typeorm_1 = require("@nestjs/typeorm");
 const property_entity_1 = require("./entities/property.entity");
 const typeorm_2 = require("typeorm");
 const user_entity_1 = require("../user/entities/user.entity");
+const address_entity_1 = require("../address/entities/address.entity");
 let PropertyService = class PropertyService {
-    constructor(propertyRepository, userRepository) {
+    constructor(propertyRepository, userRepository, addressRepository) {
         this.propertyRepository = propertyRepository;
         this.userRepository = userRepository;
+        this.addressRepository = addressRepository;
     }
-    async create(user_id, createPropertyDto) {
-        const user = await this.userRepository.findOne({ where: { user_id: user_id } });
+    async create(user_id, address_id, createPropertyDto) {
+        const user = await this.userRepository.findOne({ where: { user_id } });
         if (!user)
             throw new common_1.HttpException('User not found. Cannot create property!', common_1.HttpStatus.BAD_REQUEST);
+        const address = await this.addressRepository.findOne({ where: { address_id } });
+        if (!address)
+            throw new common_1.NotFoundException('Address not found.');
         const newProperty = this.propertyRepository.create({
             ...createPropertyDto,
             user,
+            address,
         });
-        return this.propertyRepository.save(newProperty);
+        return await this.propertyRepository.save(newProperty);
     }
     async findAll(user_id) {
         const user = await this.userRepository.findOne({ where: { user_id: user_id } });
@@ -64,7 +70,9 @@ exports.PropertyService = PropertyService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(property_entity_1.Property)),
     __param(1, (0, typeorm_1.InjectRepository)(user_entity_1.User)),
+    __param(2, (0, typeorm_1.InjectRepository)(address_entity_1.Address)),
     __metadata("design:paramtypes", [typeorm_2.Repository,
+        typeorm_2.Repository,
         typeorm_2.Repository])
 ], PropertyService);
 //# sourceMappingURL=property.service.js.map

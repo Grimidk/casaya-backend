@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Property = void 0;
+const address_entity_1 = require("../../address/entities/address.entity");
 const user_entity_1 = require("../../user/entities/user.entity");
 const typeorm_1 = require("typeorm");
 let Property = class Property {
@@ -43,6 +44,11 @@ __decorate([
     (0, typeorm_1.ManyToOne)(() => user_entity_1.User, (user) => user.properties, { onDelete: 'CASCADE' }),
     __metadata("design:type", user_entity_1.User)
 ], Property.prototype, "user", void 0);
+__decorate([
+    (0, typeorm_1.OneToOne)(() => address_entity_1.Address, (address) => address.property),
+    (0, typeorm_1.JoinColumn)(),
+    __metadata("design:type", address_entity_1.Address)
+], Property.prototype, "address", void 0);
 exports.Property = Property = __decorate([
     (0, typeorm_1.Entity)({ name: 'Property' })
 ], Property);

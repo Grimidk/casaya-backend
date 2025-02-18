@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Address = void 0;
+const property_entity_1 = require("../../property/entities/property.entity");
 const typeorm_1 = require("typeorm");
 let Address = class Address {
 };
@@ -34,6 +35,10 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Address.prototype, "municipality", void 0);
+__decorate([
+    (0, typeorm_1.OneToOne)(() => property_entity_1.Property, (property) => property.address),
+    __metadata("design:type", property_entity_1.Property)
+], Address.prototype, "property", void 0);
 exports.Address = Address = __decorate([
     (0, typeorm_1.Entity)({ name: 'Address' })
 ], Address);

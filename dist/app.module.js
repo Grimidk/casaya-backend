@@ -24,12 +24,13 @@ exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
             typeorm_1.TypeOrmModule.forRoot({
-                type: 'mysql',
-                host: 'localhost',
-                port: 3306,
-                username: 'AdminJuan',
-                password: 'Admin0204',
-                database: 'casaya_db',
+                "type": "postgres",
+                "host": "db",
+                "port": 5432,
+                "username": "user",
+                "password": "password",
+                "database": "realestate",
+                "logging": true,
                 entities: [user_entity_1.User, property_entity_1.Property, address_entity_1.Address],
                 synchronize: true,
                 dropSchema: true,
